@@ -1,0 +1,9 @@
+<%- include('../parts/header.ejs') -%>
+  <%data.forEach( (r) => { -%>
+    <li>
+      <a href="/research/<%= r.id %>"><b><%= r.name %></b> (pmid:<%= r.pmid %> , doi: <%= r.doi %>) </a>
+    </li>
+  <% }) -%>
+  <a href="/research/new" class="button">Crea nuova ricerca</a>
+</body>
+</html>

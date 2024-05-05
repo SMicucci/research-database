@@ -1,0 +1,29 @@
+:root{
+  --black: #07000F;
+  --white: #EFCFFF;
+  --first: #7F1FBF;
+  --second: #BF3FDF;
+  --third: #DF7FFF;
+}
+
+body{
+  background-color: var(--black);
+}
+ h1, h2, h3{
+   color: var(--first);
+ }
+ p, label{
+   color: var(--white);
+ }
+ a {
+   color: var(--second);
+  text-decoration: none;
+ }
+a.button {
+  padding: 2px 10px;
+  border: 2px outset;
+  border-radius: 3px;
+  background-color: var(--second);
+  border-color: var(--white);
+  color: var(--black);
+}
