@@ -1,5 +1,6 @@
 import path from 'path'
 import express from 'express'
+import bp from 'body-parser'
 import morgan from 'morgan'
 // CJS workaround
 import url from 'url'
@@ -20,6 +21,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 // MIDDLEWERE
 app.use(morgan('short'))
+app.use(bp.urlencoded({ extended: true }))
 
 //static asset <not as much happy about btw>
 app.use(express.static('./public'))

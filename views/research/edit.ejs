@@ -1,24 +1,27 @@
 <%- include('../parts/header.ejs') -%>
-<form>
+<form action="/research/new" method="post">
   
   <label>Titolo:</label>
-  <input></br>
+  <input name="name"></br>
 
   <label>pubmed id:</label>
-  <input></br>
+  <input name="pmid"></br>
   
   <label>doi id:</label>
-  <input></br>
+  <input name="doi"></br>
 
-  <input type="checkbox" id="checkbox">
+  <label>pdf_path (temp)</label>
+  <input name="pdf_path"></br>
+
+  <input name="single" type="checkbox" id="checkbox">
   <label>review o meta analisi:</label></br>
 
   <label>numero studi o ricerche:</label>
-  <input></br>
+  <input name="number"></br>
 
   <label>analisi studio</label></br>
-  <textarea></textarea></br>
+  <textarea name="summary"></textarea></br>
   
-  <input type="button" value="invio">
+  <input type="submit">
 
 </form>

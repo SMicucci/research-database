@@ -27,11 +27,11 @@ router.post('/new', (req, res) => {
   createResearch(req, res)
 })
 // UPDATE /:id
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   updateResearch(req, res)
 })
 // DELETE /:id
-router.post('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   deleteResearch(req, res)
 })
 
