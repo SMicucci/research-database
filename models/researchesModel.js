@@ -9,26 +9,37 @@ export const getResearch = async (id) => {
 }
 
 export const insertResearch = async (r) => {
-  //const id = (await query('select max(id) from research')).rows[0]
-  //console.log('max(id):',id)
-  const val = [r.doi, r.pmid, r.pdf_path, r.name, r.summary, r.single, r.number]
+  //{ name: '', pmid: '', doi: '', pdf_path: '', single: 'on', number: '', summary: '' }
+  const val = [r.name, r.pmid, r.doi, r.pdf_path,r.single, r.number, r.summary]
   var ret
-  const client = pool.client()
+  const client = await pool.connect()
+  const start = Date.now()
   try {
-    await client.query('BEGIN')
+    await client.query("BEGIN")
     // transaction query
-    ret = await client.query('insert into research(doi, pmid, pdf_path, name, summary, single, number) value($1, $2, $3, $4, $5, $6, $7)',val)
-    ret = ret.rows[0]
-    await client.query('END')
+    ret = await client.query(
+      "insert into research(name, pmid, doi, pdf_path, single, number, summary) values($1, $2, $3, $4, $5, $6, $7)",
+      val)
+    await client.query("END")
+    const duration = Date.now() - start
+    console.log(`transaction ended \x1b[95m${duration} ms\x1b[0m`)
   } catch (e) {
-    await client.query('ROLLBACK')
+    await client.query("ROLLBACK")
+    const duration = Date.now() - start
+    console.log(`transaction rollback \x1b[95m${duration} ms\x1b[0m`)
     throw e
   } finally {
-    client.realise()
+     client.release()
   }
-  return ret
+  return ret.rows[0]
 }
 
-export const maxResearch = async () => {
-  return (await query('select max(id) from research')).rows[0]
+// check uniqueness of parameter
+export const checkUnique = (column, param) => {
+  // accept only unique columns
+  if (column != 'name' || column != 'pmid' || column != 'doi' || column != 'pdf_path') {
+    console.log('\x1b[31mNot valid column selected!\x1b[m')
+    return false
+  }
+  return (await query("select * from research where $1 = $2", [column, param]).rowCount == 0
 }

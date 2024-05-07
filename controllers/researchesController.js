@@ -13,11 +13,9 @@ export const readResearch = async (req, res) => {
 }
 
 export const createResearch = async (req, res) => {
-  console.log(req.body)
+  const research = req.body
+
   const ret = await insertResearch(req.body)
-  res.redirect(201,`/research/${ret.id}`)
-  //const research = await insertResearch(req.params)
-  //res.render('research/view.ejs', {r: research})
 }
 
 export const updateResearch = async (req, res) => {
