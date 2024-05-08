@@ -1,16 +1,29 @@
 :root{
   --black: #07000F;
-  --white: #EFCFFF;
-  --first: #7F1FBF;
+  --first: #9F1FCF;
   --second: #BF3FDF;
   --third: #DF7FFF;
+  --last: #BF9FFF;
+  --white: #DFCFFF;
+  --error: #BF005F;
 }
 
+html{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+}
 body{
   background-color: var(--black);
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
 }
  h1, h2, h3{
    color: var(--first);
+   margin: 0;
  }
  p, label{
    color: var(--white);
@@ -26,4 +39,9 @@ a.button {
   background-color: var(--second);
   border-color: var(--white);
   color: var(--black);
+}
+
+.input.error {
+  border: 5px 5px;
+  border-color: var(--error);
 }

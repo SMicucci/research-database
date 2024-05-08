@@ -4,7 +4,7 @@ dotenv.config()
 
 // start client pool
 import pg from 'pg'
-export const pool = new pg.Pool()
+const pool = new pg.Pool()
 
 // pool query with logger 
 export const query = async (text, params) => {
@@ -15,15 +15,15 @@ export const query = async (text, params) => {
   return res
 }
 
-/*
 // pool transaction with logger
 export const transaction = async (text, params) => {
   const client = await pool.connect()
+  var res
   const start = Date.now()
   // start transaction
   try {
     await client.query('BEGIN')
-    await client.query(text, params)
+    res = await client.query(text, params)
     await client.query('COMMIT')
     const duration = Date.now() - start
     console.log(`transaction executed \x1b[95m${duration}\x1b[0m\n\t\x1b[92m${text}\x1b[0m`)
@@ -38,6 +38,6 @@ export const transaction = async (text, params) => {
   // resource release after transaction
   finally {
     client.release()
+    return res
   }
 }
-*/
