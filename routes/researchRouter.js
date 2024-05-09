@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
 })
 // GET /:id/edit
 router.get('/:id/edit', (req, res) => {
-  readResearch(req, res)
+  updateResearch(req, res)
 })
 // POST /
 router.post('/new', (req, res) => {
