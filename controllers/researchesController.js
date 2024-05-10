@@ -50,30 +50,12 @@ export const createResearch = async (req, res) => {
     console.log("error:",e)
     res.render('research/edit.ejs', {e: e, r: research, path: req.baseUrl + req.path})
   }
-  
 }
 
 export const patchResearch = async (req, res) => {
   console.log(req.body)
-  res.redirect('/research')
-}
 
-export const updateResearch = async (req, res) => {
-  console.log("\x1b[33m[updateResearch]\x1b[0m: Url:", req.baseUrl + req.path)
-  const r= await getResearch(req.params.id)
-  var e= {
-    //r.name empty? error, else if exist error
-    name: r.name ? await paramExist('name',r.name) : true,
-    //r.pmid empty? ok, else if exist error
-    pmid: r.pmid ? isNaN(r.pmid) ? true : await paramExist('pmid',r.pmid) : false,
-    //r.doi empty? error, else id exist error
-    doi: r.doi ? await paramExist('doi',r.doi) : true,
-    //r.number empty? error, else check if is not a number
-    number: r.number ? isNaN(r.number) : true,
-    //r.summary empty? error
-    summary: r.summary ? false : true,
-  }
-  res.render('research/edit.ejs', {e: e, r: r, path: req.baseUrl + req.params.id})
+  res.redirect('/research')
 }
 
 export const deleteResearch = async (req, res) => {

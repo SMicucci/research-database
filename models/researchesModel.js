@@ -24,7 +24,7 @@ export const updateValue = async (id, col, value) => {
   if (col !== 'name' && col !== 'pmid' && col !== 'doi' && col !== 'single' && col !== 'number' && col !== 'summary' ) {
     console.log('\t\x1b[31mNot valid column selected!\x1b[m')
   } else {
-    return (await transaction(`update research set ${col} = $1 where id = $2`, [value, id])).rows[0]
+    return (await transaction(`update research set ${col} = $1 where id = $2 returning ${col}`, [value, id])).rows[0]
   }
 }
 

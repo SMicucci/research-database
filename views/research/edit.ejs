@@ -23,7 +23,5 @@
 
   <label>analisi studio</label></br>
   <textarea class="input <%= e ? e.summary ? 'error' : '' : '' %>" name="summary"><%=r ? r.summary : '' -%></textarea></br>
-  
-  <input type="submit">
-
 </form>
+<button><%=r.id ? 'Crea' : 'Modifica'%></button>

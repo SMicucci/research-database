@@ -3,7 +3,6 @@ import {
   getResearches,
   readResearch,
   createResearch,
-  updateResearch,
   deleteResearch,
   editResearch,
   patchResearch} from '../controllers/researchesController.js'
@@ -27,6 +26,6 @@ router.route('/:id')
 
 // Path '/:id/edit'
 router.route('/:id/edit')
-  .get(updateResearch)
+  .get(editResearch)
 
 export default router
