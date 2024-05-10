@@ -1,39 +1,32 @@
 import { Router } from 'express'
 import {
-  getResearches, readResearch, createResearch, updateResearch, deleteResearch,
-  editResearch
-} from '../controllers/researchesController.js'
+  getResearches,
+  readResearch,
+  createResearch,
+  updateResearch,
+  deleteResearch,
+  editResearch,
+  patchResearch} from '../controllers/researchesController.js'
 
 const router = new Router()
 
-// GET /
-router.get('/', (req, res) => {
-  getResearches(req, res)
-})
-// GET /new
-router.get('/new', (req, res) => {
-  editResearch(req, res)
-})
-// GET /:id
-router.get('/:id', (req, res) => {
-  readResearch(req, res)
-})
-// GET /:id/edit
-router.get('/:id/edit', (req, res) => {
-  updateResearch(req, res)
-})
-// POST /
-router.post('/new', (req, res) => {
-  createResearch(req, res)
-})
-// UPDATE /:id
-router.put('/:id', (req, res) => {
-  updateResearch(req, res)
-})
-// DELETE /:id
-router.delete('/:id', (req, res) => {
-  deleteResearch(req, res)
-})
+// Path: '/'
+router.route('/')
+  .get(getResearches)
 
+// Path: '/new'
+router.route('/new')
+  .get(editResearch)
+  .post(createResearch)
+
+// Path: '/:id'
+router.route('/:id')
+  .get(readResearch)
+  .patch(patchResearch)
+  .delete(deleteResearch)
+
+// Path '/:id/edit'
+router.route('/:id/edit')
+  .get(updateResearch)
 
 export default router

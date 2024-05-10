@@ -1,11 +1,11 @@
 :root{
-  --black: #07000F;
-  --first: #9F1FCF;
-  --second: #BF3FDF;
-  --third: #DF7FFF;
-  --last: #BF9FFF;
-  --white: #DFCFFF;
   --error: #BF005F;
+  --bg: #10002B;
+  --fg: #DFCFFF;
+  --c1: #9F1FCF;
+  --c2: #BF3FDF;
+  --c3: #DF7FFF;
+  --c4: #BF9FFF;
 }
 
 html{
@@ -15,30 +15,27 @@ html{
   height: 100%;
 }
 body{
-  background-color: var(--black);
+  background-color: var(--bg);
   margin: 0;
   border: 0;
   padding: 0;
   height: 100%;
 }
- h1, h2, h3{
-   color: var(--first);
-   margin: 0;
- }
- p, label{
-   color: var(--white);
- }
- a {
-   color: var(--second);
+h1, h2, h3{
+  color: var(--c1);
+  margin: 0;
+}
+p, label, a{
+  color: var(--fg);
   text-decoration: none;
- }
+}
 a.button {
   padding: 2px 10px;
   border: 2px outset;
   border-radius: 3px;
-  background-color: var(--second);
-  border-color: var(--white);
-  color: var(--black);
+  background-color: var(--c2);
+  border-color: var(--fg);
+  color: var(--bg);
 }
 
 .input.error {

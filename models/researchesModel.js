@@ -12,25 +12,33 @@ export const getResearch = async (id) => {
 
 // transaction to insert new research
 export const insertResearch = async (r) => {
-  //{ name: '', pmid: '', doi: '', pdf_path: '', single: 'on', number: '', summary: '' }
-  const val = [r.name, r.pmid, r.doi, r.single, r.number, r.summary]
-  return await transaction(
-    "insert into research(name, pmid, doi, single, number, summary) values($1, $2, $3, $4, $5, $6)",
-    val)
+  return (await transaction(
+    "insert into research(name, pmid, doi, single, number, summary) values($1, $2, $3, $4, $5, $6) returning *",
+    [r.name, r.pmid, r.doi, r.single, r.number, r.summary]))
+    .rows[0]
+}
+
+// transaction to update new research
+export const updateValue = async (id, col, value) => {
+  // sanityze col value
+  if (col !== 'name' && col !== 'pmid' && col !== 'doi' && col !== 'single' && col !== 'number' && col !== 'summary' ) {
+    console.log('\t\x1b[31mNot valid column selected!\x1b[m')
+  } else {
+    return (await transaction(`update research set ${col} = $1 where id = $2`, [value, id])).rows[0]
+  }
+}
+
+export const dropResearch = async (id) => {
+  return (await transaction("delete from research where id = $1 returning *", [id])).rows[0]
 }
 
 // check uniqueness of parameter
 export const paramExist = async (column, param) => {
-  // accept only unique columns
-  if (column !== 'name' && column !== 'pmid' && column !== 'doi' && column !== 'pdf_path') {
-    console.log('\t\x1b[31m!Not valid column selected!\x1b[m\n')
+  // sanityze column input to avoid injection
+  if (column !== 'name' && column !== 'pmid' && column !== 'doi') {
+    console.log('\t\x1b[31mNot valid column selected!\x1b[m')
     return true // weak way to suggest an error, don't want to mess with trow exception rn
   }
-  const res = await query("select * from research where $1 = $2", [column, param])
+  const res = await query(`select * from research where ${column} = $1`, [param])
   return res.rowCount != 0 // if exist return true, else return false
-}
-
-export const getId = async (name, doi, pmid) => {
-  const res = await query("select id from research where name = $1 and doi = $2 and pmid = $3",[name, doi, pmid])
-  return res.rows[0].id
 }

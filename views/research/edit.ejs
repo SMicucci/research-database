@@ -1,5 +1,5 @@
 <%- include('../parts/header.ejs') -%>
-<form id="editForm" action="/research/<%= path %>" method="post">
+<form id="editForm" action="<%= path %>" method="post">
   
   <label>Titolo:</label>
   <input name="name" class="input <%= e ? e.name ? 'error' : '' : '' %>" value="<%= r ? r.name? r.name : '' : '' %>"></br>

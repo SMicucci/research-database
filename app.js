@@ -31,7 +31,7 @@ app.use('/research', researchRouter)
 
 //root
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname,'./views/index.html'))
+  res.redirect('/research')
 })
 
 // route not defined
