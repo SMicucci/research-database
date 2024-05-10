@@ -6,7 +6,7 @@
   <form id="updateForm" action="/research/<%= r.id%>/edit" method="get">
     <input type=submit value="Modifica">
   </form>
-  <button onclick="fetch('/research/<%= r.id%>', {method: 'DELETE'})}">Elimina</button>
+  <button onclick="delectAndRedirect('/research/<%=r.id%>', '/research')">Elimina</button>
 <!--
   <a class="button" href="/research/<%= r.id%>" onclick="return confirm('Sei sicuro di voler eliminare questa ricerca?')" data-method="delete">Elimina</a>
   <script>
