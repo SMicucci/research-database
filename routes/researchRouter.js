@@ -27,5 +27,6 @@ router.route('/:id')
 // Path '/:id/edit'
 router.route('/:id/edit')
   .get(editResearch)
+  .patch(patchResearch)
 
 export default router

@@ -7,12 +7,12 @@ import {
 
 export const getResearches = async (req, res) => {
   const researches = await allResearch()
-  res.render('research/index.ejs', {data: researches})
+  res.render('research/index', {data: researches})
 }
 
 export const readResearch = async (req, res) => {
   const research = await getResearch(req.params.id)
-  res.render('research/view.ejs', {r: research})
+  res.render('research/view', {r: research})
 }
 
 export const createResearch = async (req, res) => {
@@ -48,14 +48,13 @@ export const createResearch = async (req, res) => {
     // if error reload and keep values
     console.log("research:",research)
     console.log("error:",e)
-    res.render('research/edit.ejs', {e: e, r: research, path: req.baseUrl + req.path})
+    res.render('research/edit', {e: e, r: research, path: req.baseUrl + req.path})
   }
 }
 
 export const patchResearch = async (req, res) => {
   console.log(req.body)
-
-  res.redirect('/research')
+  res.status(200)
 }
 
 export const deleteResearch = async (req, res) => {
@@ -70,8 +69,8 @@ export const editResearch = async (req, res) => {
   // check params
   if (req.params) {
     const research = await getResearch(req.params.id)
-    res.render('research/edit.ejs', {e: {}, r: research, path: req.baseUrl + req.path})
+    res.render('research/edit', {e: {}, r: research, path: req.baseUrl + req.path})
   } else {
-    res.render('research/edit.ejs', {e: {}, r:{}, path: req.baseUrl + req.path})
+    res.render('research/edit', {e: {}, r:{}, path: req.baseUrl + req.path})
   }
 }

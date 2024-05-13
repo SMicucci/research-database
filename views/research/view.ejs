@@ -6,6 +6,6 @@
   <form id="updateForm" action="/research/<%= r.id%>/edit" method="get">
     <input class="button" type=submit value="Modifica">
   </form>
-  <button onclick="delectAndRedirect('/research/<%=r.id%>', '/research')">Elimina</button>
+  <button onclick="deleteAndRedirect('/research/<%=r.id%>', '/research')">Elimina</button>
 </body>
 </html>

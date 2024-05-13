@@ -16,3 +16,8 @@ Session.vim
 Sessionx.vim
 # auto-generate
 tags
+
+## DOCKER STUFF
+
+Dockerfile
+.dockerignore

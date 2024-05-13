@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "clear && nodemon app",
+    "start": "node app",
     "migrate": "node-pg-migrate"
   },
   "keywords": [],

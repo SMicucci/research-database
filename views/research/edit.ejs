@@ -1,27 +1,34 @@
 <%- include('../parts/header.ejs') -%>
-<form id="editForm" action="<%= path %>" method="post">
+<form id="editForm" >
   
   <label>Titolo:</label>
-  <input name="name" class="input <%= e ? e.name ? 'error' : '' : '' %>" value="<%= r ? r.name? r.name : '' : '' %>"></br>
+  <input name="name" class="input <%=
+    e && e.name ? 'error' : '' %>" value="<%=
+    r && r.name? r.name : '' %>"></br>
 
   <label>pubmed id:</label>
-  <input name="pmid" class="input <%= e ? e.pmid ? 'error' : '' : '' %>" value="<%= r ? r.pmid? r.pmid : '' : '' %>"></br>
+  <input name="pmid" class="input <%=
+    e && e.pmid ? 'error' : '' %>" value="<%=
+    r && r.pmid? r.pmid : '' %>"></br>
   
   <label>doi id:</label>
-  <input name="doi" class="input <%= e ? e.doi ? 'error' : '' : '' %>" value="<%= r ? r.doi? r.doi : '' : '' %>"></br>
+  <input name="doi" class="input <%=
+    e && e.doi ? 'error' : '' %>" value="<%=
+    r && r.doi? r.doi : '' %>"></br>
 
-<!--
-  <label>pdf_path (temp)</label>
-  <input name="pdf_path" class="<%# %>" value=<%# %>></br>
--->
-  <input name="single" type="checkbox" value="true" <%= r ? r.single ? r.single == 'true' ? 'checked' : '' : '' : '' %>>
+  <input name="single" type="checkbox" value="true" <%=
+    r && r.single && r.single == 'true' ? 'checked' : '' %>>
   <input name="single" type="hidden" value="false">
   <label>review o meta analisi:</label></br>
 
   <label>numero studi o ricerche:</label>
-  <input class="input <%= e ? e.number ? 'error' : '' : '' %>" name="number" value="<%= r ? r.number ? r.number : '' : '' %>"></br>
+  <input class="input <%=
+    e && e.number ? 'error' : '' %>" name="number" value="<%=
+    r && r.number ? r.number : '' %>"></br>
 
   <label>analisi studio</label></br>
-  <textarea class="input <%= e ? e.summary ? 'error' : '' : '' %>" name="summary"><%=r ? r.summary : '' -%></textarea></br>
+  <textarea class="input <%=
+    e && e.summary ? 'error' : '' %>" name="summary"><%=
+    r ? r.summary : '' -%></textarea></br>
 </form>
-<button><%=r.id ? 'Crea' : 'Modifica'%></button>
+<button onclick="formFunction()"><%= r && r.id ? "Modifica" : "Invia" %></button>
