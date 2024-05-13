@@ -15,6 +15,9 @@ export const readResearch = async (req, res) => {
   res.render('research/view', {r: research})
 }
 
+    console.log("edit")
+    console.log("edit")
+    console.log("edit")
 export const createResearch = async (req, res) => {
   console.log("\x1b[33m[createResearch]\x1b[0m")
   // parse research object
@@ -50,7 +53,7 @@ export const createResearch = async (req, res) => {
     // if error reload and keep values
     console.log("research:",research)
     console.log("error:",e)
-    res.statusMessage = "constraings not respected"
+    res.statusMessage = "constrains not respected"
     res.status(406).render('research/edit', {r: research, e: e})
   }
 }
@@ -70,10 +73,10 @@ export const deleteResearch = async (req, res) => {
 export const editResearch = async (req, res) => {
   console.log("\x1b[33m[editResearch]\x1b[0m")
   // check params
-  if (req.params) {
+  if (req.params && req.params.id) {
     const research = await getResearch(req.params.id)
-    res.render('research/edit', {e: {}, r: research, path: req.baseUrl + req.path})
+    res.render('research/edit', {e: {}, r: research})
   } else {
-    res.render('research/edit', {e: {}, r:{}, path: req.baseUrl + req.path})
+    res.render('research/edit', {e: {}, r:{}})
   }
 }

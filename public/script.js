@@ -22,12 +22,12 @@ const formFunction = () => {
     method: method,
     body: body,
   })
-  .then(res => {
+  .then((res) => {
     console.log("response:",res.status,res.statusText)
+    return res.text()
   })
-  /*
-  .then( () => {
-    location.reload()
+  .then((text) => {
+    let html = document.querySelector('html')
+    html.innerHTML = text
   })
-  */
 }

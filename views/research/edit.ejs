@@ -32,6 +32,7 @@
     r ? r.summary : '' -%></textarea></br>
 </form>
 <button onclick="formFunction()"><%= r && r.id ? "Modifica" : "Invia" %></button>
-  <p><%= e ? JSON.stringify(e) : 'e not defined' %></p>
+<p><%= e ? JSON.stringify(e) : 'e not defined' %></p>
+<p><%= r ? JSON.stringify(r) : 'r not defined' %></p>
 </body>
 </html>
