@@ -16,6 +16,7 @@ export const readResearch = async (req, res) => {
 }
 
 export const createResearch = async (req, res) => {
+  console.log("\x1b[33m[createResearch]\x1b[0m")
   // parse research object
   var research = {
     name: req.body.name,
@@ -33,7 +34,7 @@ export const createResearch = async (req, res) => {
   // error logic
   var e = {
     name: research.name ? await paramExist('name',research.name) : true,
-    pmid: research.pmid ? isNaN(research.pmid) ? false : await paramExist('pmid',research.pmid) : false,
+    pmid: research.pmid ? isNaN(research.pmid) ? true : await paramExist('pmid',research.pmid) : false,
     doi: research.doi ? await paramExist('doi',research.doi) : true,
     number: research.number ? isNaN(research.number) : true,
     summary: research.summary ? false : true,
@@ -43,12 +44,14 @@ export const createResearch = async (req, res) => {
   if (!e.name && !e.pmid && !e.doi && !e.number && !e.summary) {
     // if no error create research
     const newResearch = await insertResearch(research)
-    res.redirect(`/research/` + newResearch.id )
+    res.statusMessage = "new research created"
+    res.status(201).redirect(`/research/` + newResearch.id )
   } else {
     // if error reload and keep values
     console.log("research:",research)
     console.log("error:",e)
-    res.render('research/edit', {e: e, r: research, path: req.baseUrl + req.path})
+    res.statusMessage = "constraings not respected"
+    res.status(406).render('research/edit', {r: research, e: e})
   }
 }
 
@@ -65,7 +68,7 @@ export const deleteResearch = async (req, res) => {
 
 // load edit form
 export const editResearch = async (req, res) => {
-  console.log("\x1b[33m[editResearch]\x1b[0m: Url:", req.baseUrl + req.path)
+  console.log("\x1b[33m[editResearch]\x1b[0m")
   // check params
   if (req.params) {
     const research = await getResearch(req.params.id)

@@ -15,11 +15,19 @@ const formFunction = () => {
     url = window.location.href//.replace("edit?", "")
     method = "PATCH"
   }
-  const body = new FormData(form)
+  const body = new URLSearchParams( new FormData(form))
   console.log(body)
   fetch(url, {
-    headers: { 'Content-Type':'multipart/form-data' },
+    headers: { 'Content-Type':'application/x-www-form-urlencoded'},
     method: method,
     body: body,
   })
+  .then(res => {
+    console.log("response:",res.status,res.statusText)
+  })
+  /*
+  .then( () => {
+    location.reload()
+  })
+  */
 }

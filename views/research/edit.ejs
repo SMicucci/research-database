@@ -32,3 +32,6 @@
     r ? r.summary : '' -%></textarea></br>
 </form>
 <button onclick="formFunction()"><%= r && r.id ? "Modifica" : "Invia" %></button>
+  <p><%= e ? JSON.stringify(e) : 'e not defined' %></p>
+</body>
+</html>
