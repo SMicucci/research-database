@@ -2,7 +2,7 @@
   --error: #BF005F;
   --bg: #10002B;
   --fg: #DFCFFF;
-  --c1: #9F1FCF;
+  --c1: #7F0FAF;
   --c2: #BF3FDF;
   --c3: #DF7FFF;
   --c4: #BF9FFF;
@@ -15,30 +15,54 @@ html{
   height: 100%;
 }
 body{
-  background-color: var(--bg);
+  background-color: var(--fg);
   margin: 0;
   border: 0;
   padding: 0;
   height: 100%;
 }
-h1, h2, h3{
+h1, h2, h3, p, label{
   color: var(--c1);
   margin: 0;
 }
-p, label, a{
-  color: var(--fg);
-  text-decoration: none;
-}
+h1:hover {color: var(--c3);}
+a {text-decoration: none;}
+a:visited {color: var(--c1)}
+a:link {color: var(--c1)}
+a:hover {color: var(--c3);}
+
 .button, button {
   padding: 2px 10px;
   border: 2px outset;
   border-radius: 3px;
-  background-color: var(--c2);
-  border-color: var(--fg);
-  color: var(--bg);
+  background-color: var(--c1);
+  border-color: var(--c4);
+  color: var(--fg);
 }
-
 .input.error {
   border: 5px 5px;
   border-color: var(--error);
+}
+div.title {
+  background-color: var(--bg);
+  position: relative;
+  padding: 20px;
+}
+div.list {
+  margin: 15px;
+  padding: 10px;
+}
+div.elem {
+  background-color: var(--c4);
+}
+div.main {
+  padding: 10px;
+}
+h1.title {
+  width: 100%;
+  text-align: center;
+  padding: 10 0 20 0;
+}
+input[type=text] {
+
 }

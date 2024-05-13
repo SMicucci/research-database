@@ -3,7 +3,8 @@ import {
   dropResearch,
   getResearch,
   insertResearch,
-  paramExist} from '../models/researchesModel.js'
+  paramExist,
+  updateValue} from '../models/researchesModel.js'
 
 export const getResearches = async (req, res) => {
   const researches = await allResearch()
@@ -15,9 +16,6 @@ export const readResearch = async (req, res) => {
   res.render('research/view', {r: research})
 }
 
-    console.log("edit")
-    console.log("edit")
-    console.log("edit")
 export const createResearch = async (req, res) => {
   console.log("\x1b[33m[createResearch]\x1b[0m")
   // parse research object
@@ -59,7 +57,22 @@ export const createResearch = async (req, res) => {
 }
 
 export const patchResearch = async (req, res) => {
-  console.log(req.body)
+  const old_r = await getResearch(req.params.id)
+  const new_r = req.body
+  console.log("old research:",old_r,"\nnew research:",new_r)
+  for (const [old_k, old_v] of Object.entries(old_r)) {
+    for (const [new_k, new_v] of Object.entries(new_r)) {
+      if (old_k === new_k) {
+        if (old_v != new_v) {
+          await updateValue(req.params.id, new_k, new_v)
+        } else {
+          break
+        }
+      } else {
+        continue
+      }
+    }
+  }
   res.status(200)
 }
 

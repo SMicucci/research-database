@@ -1,4 +1,4 @@
-<%- include('../parts/header.ejs') -%>
+<%- include('./parts/header.ejs') -%>
 <form id="editForm" >
   
   <label>Titolo:</label>
@@ -32,7 +32,5 @@
     r ? r.summary : '' -%></textarea></br>
 </form>
 <button onclick="formFunction()"><%= r && r.id ? "Modifica" : "Invia" %></button>
-<p><%= e ? JSON.stringify(e) : 'e not defined' %></p>
-<p><%= r ? JSON.stringify(r) : 'r not defined' %></p>
 </body>
 </html>
