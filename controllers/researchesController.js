@@ -7,11 +7,13 @@ import {
   updateValue} from '../models/researchesModel.js'
 
 export const getResearches = async (req, res) => {
+  console.log("\x1b[33m[getResearches]\x1b[0m")
   const researches = await allResearch()
   res.render('research/index', {data: researches})
 }
 
 export const readResearch = async (req, res) => {
+  console.log("\x1b[33m[readResearch]\x1b[0m")
   const research = await getResearch(req.params.id)
   res.render('research/view', {r: research})
 }
@@ -45,18 +47,18 @@ export const createResearch = async (req, res) => {
   if (!e.name && !e.pmid && !e.doi && !e.number && !e.summary) {
     // if no error create research
     const newResearch = await insertResearch(research)
-    res.statusMessage = "new research created"
-    res.status(201).redirect(`/research/` + newResearch.id )
+    console.log('redirect to : ' + req.baseUrl + '/' + newResearch.id)
+    res.statusMessage = "Created"
+    res.redirect(201, req.baseUrl + '/' + newResearch.id)
   } else {
     // if error reload and keep values
-    console.log("research:",research)
-    console.log("error:",e)
     res.statusMessage = "constrains not respected"
     res.status(406).render('research/edit', {r: research, e: e})
   }
 }
 
 export const patchResearch = async (req, res) => {
+  console.log("\x1b[33m[patchResearch]\x1b[0m")
   const old_r = await getResearch(req.params.id)
   const new_r = req.body
   console.log("old research:",old_r,"\nnew research:",new_r)
@@ -73,7 +75,9 @@ export const patchResearch = async (req, res) => {
       }
     }
   }
-  res.status(200)
+  console.log('redirect: ' + req.baseUrl + '/' + req.params.id)
+  res.statusMessage = "Successful update"
+  res.redirect(201, req.baseUrl + '/' + req.params.id)
 }
 
 export const deleteResearch = async (req, res) => {
@@ -84,7 +88,7 @@ export const deleteResearch = async (req, res) => {
 
 // load edit form
 export const editResearch = async (req, res) => {
-  console.log("\x1b[33m[editResearch]\x1b[0m")
+  console.log("\x1b[33m[editResearch]\x1b[0m \x1b[35m" + req.originalUrl + "\x1b[0m")
   // check params
   if (req.params && req.params.id) {
     const research = await getResearch(req.params.id)

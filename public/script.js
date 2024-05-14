@@ -4,7 +4,7 @@ const deleteAndRedirect = (currPath, nextPath) => {
   .catch( e => {console.log(e)})
 }
 
-const formFunction = () => {
+const formFunction = async () => {
   const form = document.forms["editForm"]
   let url
   let method
@@ -12,22 +12,25 @@ const formFunction = () => {
     url = window.location.href
     method = "POST"
   } else {
-    url = window.location.href//.replace("edit?", "")
+    url = window.location.href.replace("/edit?", "")
     method = "PATCH"
   }
   const body = new URLSearchParams( new FormData(form))
   console.log(body)
-  fetch(url, {
+  await fetch(url, {
     headers: { 'Content-Type':'application/x-www-form-urlencoded'},
     method: method,
     body: body,
   })
   .then((res) => {
-    console.log("response:",res.status,res.statusText)
-    return res.text()
-  })
-  .then((text) => {
-    let html = document.querySelector('html')
-    html.innerHTML = text
+    console.log("response:", res.status,res.statusText)
+    if (res.redirected) {
+      // managment of the redirection both way :)
+      window.location.href = res.url
+    } else {
+      let html = document.querySelector('html')
+      html.innerHTML = res.text()
+
+    }
   })
 }
