@@ -6,6 +6,7 @@ import {
   deleteResearch,
   errorResearch,
   editResearch,
+  readResearchFile,
   } from '../controllers/researchesController.js'
 
 const router = new Router()
@@ -24,12 +25,9 @@ router.route('/:id')
   .get(readResearch)
   .delete(deleteResearch)
 
-// Path '/:id/edit'
-/*
-router.route('/:id/edit')
-  .get(editResearch)
-  .patch(patchResearch)
-*/
+router.route('/:id/file')
+  .get(readResearchFile)
+
 router.all('*',errorResearch)
 
 export default router

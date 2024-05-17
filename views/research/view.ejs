@@ -1,13 +1,13 @@
 <%- include('./parts/header.ejs') -%>
-  <h3><%= r.name %></h3>
-  <p><b>Pubmed id:<b> <a href="https://pubmed.ncbi.nlm.nih.gov/<%= r.pmid%>"><%= r.pmid%></a></p>
-  <p><a href="https://doi.org/<%= r.doi%>"><b>Doi direct link<b></a></p>
-  <%_ if (r.pdf) { %>
-    <embed src="data:application/pdf;base64,<%= r.pdf.toString('base64') %>" width="300" height="200" type="application/pdf"><br>
-  <%_ } %>
-<!--
-  <button onclick="window.location.href += '/edit'">Modifica</button><br>
--->
-  <button onclick="deleteAndRedirect('/research/<%=r.id%>', '/research')">Elimina</button>
+  <div class="main">
+    <h2 class="title"><%= r.name %></h2>
+    <div style="display: inline-flex;">
+      <p>Pubmed id: <a href="https://pubmed.ncbi.nlm.nih.gov/<%= r.pmid%>"><%= r.pmid%></a></p>
+      <p><a href=<%= r.doi%>>Doi direct link</a></p>
+    </div>
+    <br>
+    <iframe src="<%=r.id%>/file" width="800px" height="400px"/><br>
+    <button onclick="deleteAndRedirect('/research/<%=r.id%>', research')">Elimina</button>
+  </div>
 </body>
 </html>

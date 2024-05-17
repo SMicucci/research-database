@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 import {
   allResearch,
   dropResearch,
@@ -60,9 +61,8 @@ export const deleteResearch = async (req, res) => {
   res.status(204).end()
 }
 
-// load edit form
 export const editResearch = async (req, res) => {
-  console.log("\x1b[33m[editResearch]\x1b[0m \x1b[35m" + req.originalUrl + "\x1b[0m")
+  console.log("\x1b[33m[editResearch]\x1b[0m")
   console.log('-- QUERY => ', req.query)
   // check query
   if (Object.keys(req.query)!=0) {
@@ -78,6 +78,12 @@ export const editResearch = async (req, res) => {
   } else {
     res.render('research/edit')
   }
+}
+
+export const readResearchFile = (req, res) => {
+  console.log("\x1b[33m[readResearchFile]\x1b[0m")
+  const file = path.normalize(import.meta.dirname+'/../db/research/'+req.params.id+'.pdf')
+  res.sendFile(file)
 }
 
 export const errorResearch = (req, res) => {
