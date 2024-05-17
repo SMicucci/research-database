@@ -1,5 +1,5 @@
 :root{
-  --error: #BF005F;
+  --error: #FF3F7F;
   --bg: #10002B;
   --fg: #DFCFFF;
   --c1: #7F0FAF;
@@ -15,31 +15,32 @@ html{
   height: 100%;
 }
 body{
-  background-color: var(--fg);
+  background-color: var(--c1);
   margin: 0;
   border: 0;
   padding: 0;
   height: 100%;
 }
 h1, h2, h3, p, label{
-  color: var(--c1);
+  color: var(--fg);
   margin: 0;
 }
 a {text-decoration: none;}
-a:visited {color: var(--c1)}
-a:link {color: var(--c1)}
-a:hover {color: var(--c3);}
+a:visited {color: var(--c3)}
+a:link {color: var(--c3)}
+a:hover {color: var(--fg);}
 
 .button, button {
+  margin: 0 0 0 5px;
   padding: 2px 10px;
   border: 2px outset;
   border-radius: 3px;
-  background-color: var(--c1);
+  background-color: var(--c3);
   border-color: var(--c4);
   color: var(--fg);
 }
-.input.error {
-  border: 5px 5px;
+input.error {
+  border: 10px 10px;
   border-color: var(--error);
 }
 div.title {
@@ -53,11 +54,12 @@ div.list {
   border-width: 3px;
   border-radius: 20px;
   border-color: var(--bg);
+  background-color: var(--c2);
 }
 div.elem {
   margin: 5px;
   border-radius: 10px;
-  background-color: var(--c4);
+  background-color: var(--bg);
   padding: 5px 10px;
 }
 div.main {
@@ -68,6 +70,8 @@ h1.title {
   text-align: center;
   padding: 10 0 20 0;
 }
+a.title { color: var(--c1) }
+a.title:hover { color: var(--c3) }
 input[type=text] {
 
 }

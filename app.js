@@ -1,10 +1,6 @@
-import path from 'path'
 import express from 'express'
-import bp from 'body-parser'
 import morgan from 'morgan'
-// CJS workaround
-import url from 'url'
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
+import fu from 'express-fileupload'
 
 // ROUTERS
 import researchRouter from './routes/researchRouter.js'
@@ -17,11 +13,13 @@ const app = express()
 
 // RENDER
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
 
 // MIDDLEWERE
 app.use(morgan('short'))
-app.use(bp.urlencoded({ extended: true }))
+app.use(fu({
+  useTempFiles: true,
+  tempFileDir: './tmp/',
+}))
 
 //static asset <not as much happy about btw>
 app.use(express.static('./public'))

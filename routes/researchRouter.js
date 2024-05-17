@@ -4,8 +4,9 @@ import {
   readResearch,
   createResearch,
   deleteResearch,
+  errorResearch,
   editResearch,
-  patchResearch} from '../controllers/researchesController.js'
+  } from '../controllers/researchesController.js'
 
 const router = new Router()
 
@@ -21,12 +22,14 @@ router.route('/new')
 // Path: '/:id'
 router.route('/:id')
   .get(readResearch)
-  .patch(patchResearch)
   .delete(deleteResearch)
 
 // Path '/:id/edit'
+/*
 router.route('/:id/edit')
   .get(editResearch)
   .patch(patchResearch)
+*/
+router.all('*',errorResearch)
 
 export default router

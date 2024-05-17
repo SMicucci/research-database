@@ -7,16 +7,18 @@
   "scripts": {
     "test": "clear && nodemon app",
     "start": "node app",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "refresh-db": "node-pg-migrate down 3 && node-pg-migrate up 3"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
+    "formidable": "^3.5.1",
     "morgan": "^1.10.0",
     "node-pg-migrate": "^7.2.2",
     "nodemon": "^3.1.0",

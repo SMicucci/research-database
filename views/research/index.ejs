@@ -1,18 +1,20 @@
 <%- include('./parts/header.ejs') -%>
   <div class="main">
-    <div class="list">
-      <%_ data.forEach( (r) => { %>
-        <div class="elem">
-          <h3><a  href="/research/<%= r.id %>"><%= r.name %></a></h3>
-          <%_ if (r.pmid) { %>
-            <p class="pmid_ref">pubmed link: <a href="https://pubmed.ncbi.nlm.nih.gov/<%=r.pmid%>"><%= r.pmid  %></a></p>
-          <%_ } else { %>
-            <p class="pmid_ref">pubmed reference: <b>none</b></p>
-          <%_ } %>
-          <p class="doi_ref">doi link: <a href="<%=r.doi%>"><%= r.doi  %></a></p>
-        </div>
-      <%_ }) %>
-    </div>
+    <%_ if (data.length) { %>
+      <div class="list">
+        <%_ data.forEach( (r) => { %>
+          <div class="elem">
+            <h3><a  href="/research/<%= r.id %>"><%= r.name %></a></h3>
+            <%_ if (r.pmid) { %>
+              <p class="pmid_ref">pubmed link: <a href="https://pubmed.ncbi.nlm.nih.gov/<%=r.pmid%>"><%= r.pmid  %></a></p>
+            <%_ } else { %>
+              <p class="pmid_ref">pubmed reference: <b>none</b></p>
+            <%_ } %>
+            <p class="doi_ref">doi link: <a href="<%=r.doi%>"><%= r.doi  %></a></p>
+          </div>
+        <%_ }) %>
+      </div>
+    <%_ } %>
     <button onclick="window.location.href += '/new'">Crea nuova ricerca</button>
   </div>
 </body>
