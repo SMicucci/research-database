@@ -46,7 +46,8 @@ export const dropResearch = async (id) => {
 export const paramExist = async (column, param) => {
   // sanityze column to avoid injection
   if (column != 'name' && column != 'pmid' && column != 'doi') {
-    console.log('\t\x1b[31mNot valid column selected!\x1b[m')
+    console.log('\t\x1b[31mINJECTION ATTEMPT!\x1b[m')
+    console.log('\t\x1b[36mInput sanityzed\x1b[m ', '\t\x1b[93m[', column, ']\x1b[m')
     return true
   }
   const res = await query(`select * from research where ${column} = $1`, [param])

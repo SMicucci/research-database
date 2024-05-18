@@ -10,11 +10,11 @@ exports.up = (pgm) => {
     pmid: {type: 'bigint', unique: true, notNull: false},
     doi: {type: 'varchar(80)', unique: true, notNull: true},
   })
+  /*
   pgm.createTable('comment', {
     id: 'id',
     researchId: {type: 'integer', references: 'research', notNull: true},
     summary: {type: 'text', notNull: true},
   })
-};
-  /*
   */
+};

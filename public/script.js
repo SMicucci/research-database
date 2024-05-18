@@ -1,6 +1,6 @@
-const deleteAndRedirect = (currPath, nextPath) => {
-  fetch(currPath, {method: 'delete'})
-  .then(() => {window.location.href = nextPath})
+const deleteAndRedirect = () => {
+  fetch(window.location.href, {method: 'delete'})
+  .then(() => {window.location.href = window.location.origin + '/research'})
   .catch( e => {console.log(e)})
 }
 
