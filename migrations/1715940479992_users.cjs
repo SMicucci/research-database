@@ -7,7 +7,7 @@ exports.up = (pgm) => {
   pmg.createTable('user', {
     name: {type: 'varchar(64)', unique: true, notNull: true, primaryKey: true},
     email: {type: 'varchar(320)', unique: true, notNull: true},
-    hashPassword: {type: 'varchar(1024)', unique: true, notNull: true},
-    salt: {type: 'varchar(1024)', notNull: true},
+    hashPassword: {type: 'varchar(2732)', unique: true, notNull: true},
+    salt: {type: 'varchar(2732)', notNull: true},
   })
 };

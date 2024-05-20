@@ -1,44 +1,6 @@
-:root{
-  --error: #FF3F7F;
-  --bg: #10002B;
-  --fg: #DFCFFF;
-  --c1: #7F0FAF;
-  --c2: #BF3FDF;
-  --c3: #DF7FFF;
-  --c4: #BF9FFF;
-}
+@import './default.css';
 
-html{
-  margin: 0;
-  border: 0;
-  padding: 0;
-  height: 100%;
-}
-body{
-  background-color: var(--c1);
-  margin: 0;
-  border: 0;
-  padding: 0;
-  height: 100%;
-}
-h1, h2, h3, p, label{
-  color: var(--fg);
-  margin: 0;
-}
-a {text-decoration: none;}
-a:visited {color: var(--c3)}
-a:link {color: var(--c3)}
-a:hover {color: var(--fg);}
 
-.button, button {
-  margin: 0 0 0 5px;
-  padding: 2px 10px;
-  border: 2px outset;
-  border-radius: 3px;
-  background-color: var(--c3);
-  border-color: var(--c4);
-  color: var(--fg);
-}
 input.error {
   border: 10px 10px;
   border-color: var(--error);

@@ -2,15 +2,15 @@ import { Router } from 'express'
 import {
   loginPage,
   loginUser,
-  signinPage,
-  signinUser,
+  signupPage,
+  signupUser,
   } from '../controllers/userController.js'
 
 const router = new Router()
 
 router.route('/signin')
-  .get(signinPage)
-  .post(signinUser)
+  .get(signupPage)
+  .post(signupUser)
 
 router.route('/login')
   .get(loginPage)

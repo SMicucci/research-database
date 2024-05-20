@@ -1,0 +1,40 @@
+:root{
+  --err: #FF3F7F;
+  --bg: #0F002F;
+  --fg: #FFE8F8;
+  --c1: #7F0FAF;
+  --c2: #9F0FCF;
+  --c3: #BF3FDF;
+  --c4: #BF6FCF;
+  --c5: #E89FFF;
+}
+html{
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+}
+body{
+  background-color: var(--c1);
+  margin: 0;
+  border: 0;
+  padding: 0;
+  height: 100%;
+}
+h1, h2, h3, p, label{
+  color: var(--fg);
+  margin: 0;
+}
+a {text-decoration: none;}
+a:visited {color: var(--c3)}
+a:link {color: var(--c3)}
+a:hover {color: var(--fg);}
+a.button, button {
+  margin: 0 0 0 5px;
+  padding: 2px 10px;
+  border: 2px outset;
+  border-radius: 3px;
+  background-color: var(--c3);
+  border-color: var(--c4);
+  color: var(--fg);
+}

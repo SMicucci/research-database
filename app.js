@@ -30,7 +30,10 @@ app.use('/user', userRouter)
 
 //root
 app.get('/', (req, res) => {
-  res.redirect('/user/signin')
+  res.redirect('/home')
+})
+app.get('/home', (req, res) => {
+  res.render('user/home')
 })
 
 // route not defined
