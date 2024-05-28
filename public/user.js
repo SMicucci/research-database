@@ -1,4 +1,4 @@
-const signupForm = () => {
+ const signupForm = () => {
   // get element and value
   const form = document.getElementById('signupForm')
   const name = form[0].value
@@ -22,6 +22,7 @@ const signupForm = () => {
     form[2].attributes.class.value = 'error'
   else
     query.append('password', password)
+  console.log('>>> ',query)
   // send query request
   fetch(window.location.href + '?' + query)
   .then( async (res) => {
@@ -37,6 +38,7 @@ const signupForm = () => {
     for (let i=0; i < form.length; i++)
       if (form[i].attributes.class.value == 'error')
         return
+    console.log('no error encountered')
     const body = new FormData(form)
     console.log(body)
     fetch(window.location.href, {
@@ -46,7 +48,7 @@ const signupForm = () => {
     })
     .then((res) => {
       console.log(res)
-      window.location.href = res.url
+      //window.location.href = res.url
     })
   })
 }

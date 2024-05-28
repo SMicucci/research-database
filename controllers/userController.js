@@ -14,8 +14,7 @@ export const signupUser = async (req, res) => {
     salt: salt.toString('base64'),
     password: password.toString('base64'),
   }
-  res.status(200)
-  res.end()
+  res.redirect('/research/')
 }
 
 export const loginUser = async (req, res) => {
@@ -24,15 +23,11 @@ export const loginUser = async (req, res) => {
 
 export const signupPage = async (req, res) => {
   console.log("\x1b[33m[signinPage]\x1b[0m")
-  // header, just fun
-  console.log('header:')
-  console.log('Host: ',req.get('Host'))
-  console.log('User-Agent: ',req.get('User-Agent'))
-  console.log('Connection: ',req.get('Connection'))
   // end header
   if (Object.keys(req.query) == 0) {
     res.render('user/signin')
   } else {
+    console.log('>> check signup params')
     var valid = {}
     if (req.query.name)
       valid.name = await paramExist('name', req.query.name)
